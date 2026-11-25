@@ -1,0 +1,503 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-display: "Newsreader", Georgia, "Times New Roman", serif;
+  --font-body: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+
+  --brand-primary: #172340;
+  --brand-secondary: #2a9d90;
+  --accent: #2a9d90;
+  --accent-strong: #176e65;
+
+  --navy-950: #091326;
+  --navy-900: #0d1930;
+  --navy-850: #111f39;
+  --navy-800: #172340;
+  --navy-750: #1b2b49;
+  --navy-700: #223655;
+
+  --surface-light: #f5f7fa;
+  --surface-blue-light: #eaf0f6;
+  --text-on-dark: #f7f9fc;
+  --text-on-dark-secondary: #bac6d8;
+  --text-on-light: #172340;
+  --text-on-light-secondary: #526174;
+  --border-dark: rgba(255, 255, 255, 0.1);
+  --border-dark-hover: rgba(255, 255, 255, 0.2);
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 22px;
+
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --overlap: 24px;
+}
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    overflow-x: clip;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+
+  body {
+    @apply bg-navy-950 font-body text-ink-800 antialiased;
+    overflow-x: clip;
+    font-feature-settings: "kern", "liga";
+    text-rendering: optimizeLegibility;
+  }
+
+  p,
+  li {
+    line-height: 1.65;
+  }
+
+  ::selection {
+    background: rgba(42, 157, 144, 0.32);
+    color: #ffffff;
+  }
+
+  h1,
+  h2,
+  h3 {
+    @apply font-display;
+    text-wrap: balance;
+  }
+
+  [id] {
+    scroll-margin-top: 88px;
+  }
+
+  :focus-visible {
+    outline: 2px solid #42b0a2;
+    outline-offset: 3px;
+  }
+}
+
+@layer components {
+  .shell {
+    @apply mx-auto w-full max-w-6xl px-5 sm:px-8 lg:px-10;
+  }
+
+  .shell-wide {
+    @apply mx-auto w-full max-w-[80rem] px-5 sm:px-8 lg:px-10;
+  }
+
+  /* ── Escala tipográfica fluida ── */
+  .type-hero {
+    font-size: clamp(2.7rem, 5.5vw, 5.8rem);
+    line-height: 1.02;
+    letter-spacing: -0.035em;
+  }
+
+  .type-h2-lg {
+    font-size: clamp(2.3rem, 4vw, 4.4rem);
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+  }
+
+  .type-h2 {
+    font-size: clamp(2.05rem, 3.5vw, 3.8rem);
+    line-height: 1.07;
+    letter-spacing: -0.028em;
+  }
+
+  @media (max-width: 479px) {
+    .type-h2-lg {
+      font-size: clamp(1.85rem, 8.2vw, 2.3rem);
+    }
+
+    .type-h2 {
+      font-size: clamp(1.75rem, 7.6vw, 2.05rem);
+    }
+  }
+
+  .type-h3-lg {
+    font-size: clamp(1.6rem, 2.4vw, 2.5rem);
+    line-height: 1.12;
+    letter-spacing: -0.02em;
+  }
+
+  .type-h3 {
+    font-size: clamp(1.3rem, 1.8vw, 1.72rem);
+    line-height: 1.2;
+    letter-spacing: -0.016em;
+  }
+
+  .type-display-year {
+    font-size: clamp(5.2rem, 22vw, 14rem);
+    line-height: 1;
+    padding-block: 0.04em;
+    letter-spacing: -0.045em;
+  }
+
+  /* ── Espaçamento de seção ── */
+  .section-pad {
+    @apply py-20 sm:py-28 lg:py-32;
+  }
+
+  .section-pad-compact {
+    @apply py-16 sm:py-20 lg:py-24;
+  }
+
+  /* Cada seção sobrepõe levemente a anterior, em painel com cantos suaves */
+  .section-overlap {
+    position: relative;
+    margin-top: calc(var(--overlap) * -1);
+    border-top-left-radius: var(--radius-xl);
+    border-top-right-radius: var(--radius-xl);
+  }
+
+  /* ── Rótulo de seção ── */
+  .section-label {
+    @apply inline-flex items-center gap-2.5 font-body text-[13px] font-semibold tracking-normal text-smoke-600;
+  }
+
+  .section-label .dot {
+    @apply size-1.5 shrink-0 rounded-full bg-brand-600;
+  }
+
+  .section-label.on-ink {
+    @apply text-ondark-soft;
+  }
+
+  .section-label.on-ink .dot {
+    @apply bg-brand-400;
+    box-shadow: 0 0 0 4px rgba(66, 176, 162, 0.16);
+  }
+
+  /* ── Fundos azuis em camadas ── */
+  .bg-hero {
+    background:
+      radial-gradient(55% 50% at 80% 62%, rgba(74, 110, 175, 0.2), transparent 62%),
+      radial-gradient(40% 36% at 6% 0%, rgba(42, 157, 144, 0.08), transparent 60%),
+      linear-gradient(180deg, #0d1930 0%, #101d37 100%);
+  }
+
+  .bg-challenge {
+    background:
+      radial-gradient(50% 45% at 100% 0%, rgba(74, 110, 175, 0.12), transparent 60%),
+      linear-gradient(180deg, #121f3a 0%, #142342 100%);
+  }
+
+  .bg-mentoria {
+    background:
+      radial-gradient(48% 40% at 12% 10%, rgba(74, 110, 175, 0.14), transparent 62%),
+      radial-gradient(40% 40% at 100% 100%, rgba(42, 157, 144, 0.06), transparent 60%),
+      #0b162c;
+  }
+
+  .bg-platform {
+    background:
+      radial-gradient(60% 45% at 50% 62%, rgba(74, 110, 175, 0.18), transparent 65%),
+      linear-gradient(180deg, #0d1930 0%, #0f1c36 100%);
+  }
+
+  .bg-results {
+    background:
+      radial-gradient(45% 60% at 0% 100%, rgba(74, 110, 175, 0.14), transparent 62%),
+      #172340;
+  }
+
+  .bg-year {
+    background:
+      radial-gradient(52% 55% at 24% 38%, rgba(74, 110, 175, 0.24), transparent 64%),
+      radial-gradient(36% 40% at 92% 100%, rgba(42, 157, 144, 0.09), transparent 62%),
+      #091326;
+  }
+
+  .bg-apply {
+    background:
+      radial-gradient(52% 50% at 85% 20%, rgba(74, 110, 175, 0.2), transparent 62%),
+      radial-gradient(40% 40% at 0% 100%, rgba(42, 157, 144, 0.07), transparent 60%),
+      #0d1930;
+  }
+
+  .bg-footer {
+    background: #091326;
+  }
+
+  /* Linhas técnicas de baixíssima intensidade (escuro e claro) */
+  .tech-grid {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+    background-size: 72px 72px;
+    -webkit-mask-image: radial-gradient(ellipse 75% 65% at 72% 35%, #000 0%, transparent 78%);
+    mask-image: radial-gradient(ellipse 75% 65% at 72% 35%, #000 0%, transparent 78%);
+  }
+
+  .tech-grid-light {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background-image:
+      linear-gradient(rgba(23, 35, 64, 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(23, 35, 64, 0.04) 1px, transparent 1px);
+    background-size: 64px 64px;
+    -webkit-mask-image: radial-gradient(ellipse 80% 65% at 80% 20%, #000 0%, transparent 78%);
+    mask-image: radial-gradient(ellipse 80% 65% at 80% 20%, #000 0%, transparent 78%);
+  }
+
+  /* Superfícies claras com profundidade editorial (evita branco chapado) */
+  .bg-light-editorial {
+    background:
+      radial-gradient(55% 45% at 88% 8%, rgba(42, 157, 144, 0.06), transparent 62%),
+      radial-gradient(50% 45% at 8% 92%, rgba(23, 35, 64, 0.045), transparent 60%),
+      linear-gradient(180deg, #f6f8fb 0%, #eef2f7 100%);
+  }
+
+  .bg-light-mentor {
+    background:
+      radial-gradient(52% 48% at 82% 42%, rgba(23, 35, 64, 0.06), transparent 62%),
+      radial-gradient(40% 35% at 10% 10%, rgba(42, 157, 144, 0.05), transparent 58%),
+      linear-gradient(180deg, #edf2f7 0%, #e6edf5 100%);
+  }
+
+  .bg-light-faq {
+    background:
+      radial-gradient(50% 45% at 15% 15%, rgba(23, 35, 64, 0.04), transparent 60%),
+      linear-gradient(180deg, #f4f6f9 0%, #edf2f6 100%);
+  }
+
+  .aurora-layer {
+    background:
+      radial-gradient(45% 42% at 22% 28%, rgba(56, 112, 184, 0.16), transparent 70%),
+      radial-gradient(40% 38% at 78% 22%, rgba(42, 157, 144, 0.11), transparent 72%);
+    filter: blur(24px);
+    will-change: transform;
+  }
+
+  .glow-blue {
+    background: radial-gradient(closest-side, rgba(88, 130, 200, 0.28), transparent 72%);
+    filter: blur(8px);
+  }
+
+  .year-gradient {
+    background: linear-gradient(180deg, #f7f9fc 18%, #6f8bb5 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* ── Botões ── */
+  .btn {
+    @apply inline-flex min-h-[50px] items-center justify-center gap-2.5 rounded-ds-md font-body text-[15px] font-semibold leading-none transition-all duration-200 ease-soft active:translate-y-px focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-400 focus-visible:ring-offset-2 focus-visible:ring-offset-navy-950 disabled:pointer-events-none disabled:opacity-55;
+  }
+
+  .btn-sm {
+    @apply min-h-[42px] px-4 py-2.5 text-sm;
+  }
+
+  /* Principal: verde-ciano oficial com texto navy (contraste 5.6:1) */
+  .btn-primary,
+  .btn-teal {
+    @apply btn bg-brand-500 px-7 py-3.5 text-navy-950 hover:-translate-y-px hover:bg-brand-400;
+    box-shadow: 0 10px 28px -12px rgba(42, 157, 144, 0.65);
+  }
+
+  .btn-primary:hover,
+  .btn-teal:hover {
+    box-shadow: 0 14px 34px -12px rgba(66, 176, 162, 0.7);
+  }
+
+  .btn-ink {
+    @apply btn bg-navy-800 px-7 py-3.5 text-white hover:-translate-y-px hover:bg-navy-900;
+    box-shadow: 0 10px 24px -14px rgba(9, 19, 38, 0.6);
+  }
+
+  .btn-light {
+    @apply btn bg-white px-7 py-3.5 text-navy-800 hover:-translate-y-px hover:bg-navy-50;
+  }
+
+  .btn-outline {
+    @apply btn border border-navy-800/25 bg-transparent px-6 py-3.5 text-navy-800 hover:border-navy-800/60 hover:bg-navy-800/[0.05];
+  }
+
+  .btn-outline.on-ink {
+    @apply border-white/20 text-ondark hover:border-white/50 hover:bg-white/[0.07];
+  }
+
+  .btn .arrow {
+    transition: transform 0.25s var(--ease);
+  }
+
+  .btn:hover .arrow {
+    transform: translateX(3px);
+  }
+
+  /* Link com sublinhado animado */
+  .link-underline {
+    background-image: linear-gradient(currentColor, currentColor);
+    background-size: 0 1px;
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    transition:
+      background-size 0.3s var(--ease),
+      color 0.2s;
+  }
+
+  .link-underline:hover,
+  .link-underline[data-active="true"] {
+    background-size: 100% 1px;
+  }
+}
+
+/* ── Revelação por scroll (variantes) ── */
+.reveal {
+  opacity: 0;
+  transform: translate3d(var(--rv-x, 0), var(--rv-y, 20px), 0) scale(var(--rv-s, 1));
+  transition:
+    opacity 0.7s var(--ease),
+    transform 0.7s var(--ease);
+  will-change: opacity, transform;
+}
+
+.reveal[data-v="left"] {
+  --rv-x: -24px;
+  --rv-y: 0px;
+}
+
+.reveal[data-v="right"] {
+  --rv-x: 24px;
+  --rv-y: 0px;
+}
+
+.reveal[data-v="scale"] {
+  --rv-y: 16px;
+  --rv-s: 0.97;
+}
+
+.reveal[data-v="fade"] {
+  --rv-y: 0px;
+}
+
+.reveal.is-in {
+  opacity: 1;
+  transform: none;
+}
+
+/* Sem JS: nada permanece oculto */
+@media (scripting: none) {
+  .reveal,
+  .rise,
+  .panel-enter {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+  }
+}
+
+.rule {
+  @apply h-px w-full bg-line;
+}
+
+.rule-on-ink {
+  @apply h-px w-full;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* Coreografia de entrada do hero */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.rise {
+  opacity: 0;
+  animation: rise 0.8s var(--ease) both;
+}
+
+@keyframes header-in {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.header-in {
+  animation: header-in 0.6s var(--ease) both;
+}
+
+@keyframes bar-grow {
+  from {
+    transform: scaleX(0);
+  }
+}
+
+.bar-grow {
+  transform-origin: left center;
+  animation: bar-grow 0.9s var(--ease) 0.2s both;
+}
+
+@keyframes panel-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.panel-enter {
+  opacity: 0;
+  animation: panel-in 0.45s var(--ease) 0.03s both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .rise,
+  .header-in,
+  .bar-grow,
+  .panel-enter,
+  .animate-marquee,
+  .animate-aurora,
+  .animate-sweep {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
+/* Marquee pause on hover / focus-within */
+.marquee-group:hover .marquee-track,
+.marquee-group:focus-within .marquee-track {
+  animation-play-state: paused;
+}
