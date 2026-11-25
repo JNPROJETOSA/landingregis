@@ -230,6 +230,7 @@ export function Candidatura() {
                   variant="outline"
                   className="on-ink btn-sm mt-3.5"
                   newTab
+                  whatsappMessage={site.whatsapp.messages.candidaturaDirect}
                   ariaLabel="Falar com SAC no WhatsApp"
                 >
                   Falar com SAC no WhatsApp
@@ -277,6 +278,7 @@ export function Candidatura() {
                     href="whatsapp"
                     variant="ink"
                     newTab
+                    whatsappMessage={site.whatsapp.messages.candidaturaSuccess}
                     className="w-full sm:w-auto"
                   >
                     Falar com SAC no WhatsApp

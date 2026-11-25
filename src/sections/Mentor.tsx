@@ -227,6 +227,7 @@ export function Mentor() {
                     href="whatsapp"
                     variant="outline"
                     newTab
+                    whatsappMessage={site.whatsapp.messages.mentor}
                     className="w-full sm:w-auto"
                   >
                     Falar com SAC no WhatsApp

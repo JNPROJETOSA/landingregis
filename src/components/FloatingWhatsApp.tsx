@@ -10,7 +10,7 @@ export function FloatingWhatsApp() {
   if (!site.whatsapp.number) return null;
   return (
     <a
-      href={buildWhatsAppUrl()}
+      href={buildWhatsAppUrl(site.whatsapp.messages.floating)}
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Falar com SAC no WhatsApp"

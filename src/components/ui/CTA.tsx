@@ -15,6 +15,8 @@ type Props = {
   ariaLabel?: string;
   /** Seta com deslocamento sutil no hover. */
   arrow?: boolean;
+  /** Mensagem personalizada pré-preenchida quando href === "whatsapp". */
+  whatsappMessage?: string;
 };
 
 export function CTA({
@@ -25,9 +27,10 @@ export function CTA({
   newTab,
   ariaLabel,
   arrow,
+  whatsappMessage,
 }: Props) {
   const isWhatsApp = href === "whatsapp";
-  const finalHref = isWhatsApp ? buildWhatsAppUrl() : href;
+  const finalHref = isWhatsApp ? buildWhatsAppUrl(whatsappMessage) : href;
   const configured = !isWhatsApp || Boolean(site.whatsapp.number);
 
   const base: Record<NonNullable<Props["variant"]>, string> = {

@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import { site } from "@/config/site";
 import { Reveal } from "@/components/ui/Reveal";
 import { CTA } from "@/components/ui/CTA";
 
@@ -143,6 +144,7 @@ export function Faq() {
                     href="whatsapp"
                     variant="outline"
                     newTab
+                    whatsappMessage={site.whatsapp.messages.faq}
                     className="btn-sm mt-4"
                   >
                     Falar com SAC no WhatsApp

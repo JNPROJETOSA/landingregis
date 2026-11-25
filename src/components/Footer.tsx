@@ -64,6 +64,7 @@ export function Footer() {
                 href="whatsapp"
                 variant="outline"
                 newTab
+                whatsappMessage={site.whatsapp.messages.footer}
                 className="on-ink btn-sm mt-1 px-4 text-xs"
               >
                 Falar com SAC no WhatsApp

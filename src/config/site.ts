@@ -36,11 +36,24 @@ export const site = {
   },
 
   whatsapp: {
-    // Formato internacional, somente dígitos. Ex.: "5511999999999".
-    number: process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "",
+    // Formato internacional, somente dígitos. Ex.: "554192223999".
+    number: process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "554192223999",
     // Mensagem padrão pré-preenchida (o código de indicação/cupom é anexado pelo front-end).
     defaultMessage:
-      "Olá! Quero saber mais sobre a Mentoria Regisdência (matrículas 2027).",
+      "Olá! Quero saber mais sobre a Mentoria Regis-dência (matrículas 2027).",
+    messages: {
+      floating:
+        "Olá! Estou navegando na página da Mentoria Regis-dência 2027 e gostaria de tirar algumas dúvidas com a equipe.",
+      mentor:
+        "Olá! Acabei de conhecer o trabalho do mentor Régis na Mentoria Regis-dência e gostaria de entender melhor como funciona o acompanhamento individual.",
+      faq: "Olá! Estava lendo as perguntas frequentes da Mentoria Regis-dência e gostaria de conversar sobre a minha situação antes de enviar minha candidatura.",
+      candidaturaDirect:
+        "Olá! Cheguei na etapa de candidatura da Mentoria Regis-dência 2027 e prefiro conversar diretamente com a equipe pelo WhatsApp.",
+      candidaturaSuccess:
+        "Olá! Acabei de enviar minha candidatura para a Mentoria Regis-dência 2027 pelo site e gostaria de adiantar o atendimento por aqui.",
+      footer:
+        "Olá! Vi a página completa da Mentoria Regis-dência 2027 e gostaria de saber mais detalhes sobre vagas e condições.",
+    },
   },
 
   // Prazo de resposta — exibir somente quando confirmado/configurado.
